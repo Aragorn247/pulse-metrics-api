@@ -25,8 +25,10 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - ./app:/app/app
+      - ./alembic:/app/alembic
+      - ./alembic.ini:/app/alembic.ini
     ports:
-      - "8001:8000"  # Exponemos FastAPI en el puerto 8001 de tu PC (el campamento usaba otros)
+      - "8001:8000"  # Exponemos FastAPI en el puerto 8001 de tu PC
     environment:
       - DATABASE_URL=postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-pulse_db}
       - REDIS_URL=redis://redis:6379/0

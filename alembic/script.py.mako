@@ -14,8 +14,8 @@ ${imports | n}
 # revision identifiers, used by Alembic.
 revision: str = ${repr(up_revision)}
 down_revision: Union[str, None] = ${repr(down_revision)}
-branch_labels: Union[str, None] = ${repr(branch_labels)}
-depends_on: Union[str, None] = ${repr(depends_on)}
+branch_labels: Union[str, Sequence[str], None] = ${repr(branch_labels)}
+depends_on: Union[str, Sequence[str], None] = ${repr(depends_on)}
 
 
 def upgrade() -> None:
