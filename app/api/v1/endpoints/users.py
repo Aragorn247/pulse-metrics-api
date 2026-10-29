@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
@@ -41,3 +41,11 @@ async def create_user(
     await db.refresh(db_obj)
     
     return db_obj
+
+
+@router.get("/me", response_model=User)
+async def read_user_me(
+    current_user: UserModel = Depends(deps.get_current_user),
+) -> Any:
+    """Obtiene los detalles del usuario actualmente autenticado mediante JWT."""
+    return current_user
